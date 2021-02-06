@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamSample.AppHelper;
@@ -57,7 +58,12 @@ namespace XamSample.ViewModel
         {
             //Logout API and pop this page
             Application.Current.Properties.Clear();
-            Application.Current.MainPage.Navigation.PopAsync();
+            //var existingPages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
+            //var count = existingPages.Count;
+            //while (existingPages.Count!=1)
+            {
+                Application.Current.MainPage.Navigation.PopToRootAsync();
+            }
         }
 
         /// <summary>

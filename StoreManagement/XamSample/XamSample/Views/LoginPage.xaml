@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Resx="clr-namespace:XamSample.Resources"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             x:Class="XamSample.Views.LoginPage" NavigationPage.HasNavigationBar="False">
+             x:Class="XamSample.Views.LoginPage" NavigationPage.HasNavigationBar="False" BackgroundColor="#80d0ff">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Login_style" TargetType="Label">
@@ -15,14 +15,17 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <Label Text="Store Login" Style="{StaticResource Login_style}"></Label>
-            <Frame BorderColor="Red">
+            <!--<Label Text="Store Login" Style="{StaticResource Login_style}"></Label>-->
+            <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" HeightRequest="200" Margin="10,10"></Image>
+            <Frame BorderColor="#1190CB">
                 <StackLayout>
                     <Label Text="{x:Static Resx:AppResources.UserName}"  HorizontalOptions="FillAndExpand"></Label>
                     <Entry HorizontalOptions="FillAndExpand" x:Name="UserName" Text="{Binding UserName}" Placeholder="username" ></Entry>
                     <Label Text="{x:Static Resx:AppResources.Password}"  HorizontalOptions="FillAndExpand"></Label>
                     <Entry HorizontalOptions="FillAndExpand" IsPassword="True" x:Name="PassWord" Placeholder="password" Text="{Binding Password}"></Entry>
                     <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" Text="{x:Static Resx:AppResources.Signin}" Command="{Binding LoginCommand}"></Button>
+
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" Text="{x:Static Resx:AppResources.Newuser}" Command="{Binding LoginCommand1}"></Button>
                 </StackLayout>
             </Frame>            
         </StackLayout>

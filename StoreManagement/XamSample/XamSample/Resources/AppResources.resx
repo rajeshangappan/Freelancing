@@ -132,14 +132,26 @@
   <data name="MaxQty" xml:space="preserve">
     <value>Max Qty</value>
   </data>
+  <data name="Newuser" xml:space="preserve">
+    <value>New User</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
   <data name="ProductName" xml:space="preserve">
     <value>Product Name</value>
   </data>
+  <data name="Registration" xml:space="preserve">
+    <value>User Registration</value>
+  </data>
+  <data name="RePassword" xml:space="preserve">
+    <value>Re-Enter Password</value>
+  </data>
   <data name="Signin" xml:space="preserve">
     <value>Signin</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>Sign Up</value>
   </data>
   <data name="UserName" xml:space="preserve">
     <value>UserName</value>

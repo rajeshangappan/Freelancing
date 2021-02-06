@@ -85,6 +85,7 @@ namespace XamSample
             IocContainer.RegisterSinglton<IProductDBService, ProductDBService>();
 
             IocContainer.Register<LoginPageViewModel>();
+            IocContainer.Register<RegistrationViewModel>();
             IocContainer.Register<ProductViewModel>();
             IocContainer.Register<ProductDetailsPageViewModel>();
             IocContainer.Register<StoreMainPageViewModel>();

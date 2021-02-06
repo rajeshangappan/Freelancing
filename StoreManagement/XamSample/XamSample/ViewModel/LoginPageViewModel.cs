@@ -16,7 +16,7 @@ namespace XamSample.ViewModel
         /// <summary>
         /// Defines the _loginService.
         /// </summary>
-        private ILoginService _loginService;
+        private readonly ILoginService _loginService;
 
         #endregion
 
@@ -27,6 +27,8 @@ namespace XamSample.ViewModel
         /// </summary>
         public ICommand LoginCommand { protected set; get; }
 
+        public ICommand LoginCommand1 { protected set; get; }
+
         /// <summary>
         /// Gets or sets the Password.
         /// </summary>
@@ -36,6 +38,8 @@ namespace XamSample.ViewModel
         /// Gets or sets the UserName.
         /// </summary>
         public string UserName { get; set; }
+
+        public ICommand NewUserCommand { protected set; get; }
 
         #endregion
 
@@ -48,7 +52,15 @@ namespace XamSample.ViewModel
         public LoginPageViewModel(ILoginService loginService)
         {
             _loginService = loginService;
+            _loginService.RegisterDefaultUser();
+            LoginCommand1 = new Command(NewUser);
             LoginCommand = new Command(Login);
+        }
+
+        private void NewUser()
+        {
+            var vm = IocContainer.Resolve<RegistrationViewModel>();
+            Application.Current.MainPage.Navigation.PushAsync(new UserRegistrationPage { BindingContext = vm });
         }
 
         #endregion

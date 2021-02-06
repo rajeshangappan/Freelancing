@@ -16,6 +16,10 @@ namespace XamSample.Contracts
         /// <param name="password">The password<see cref="string"/>.</param>
         /// <returns>The <see cref="Task{bool}"/>.</returns>
         Task<bool> Login(string username, string password);
+
+        Task<bool> Register(string username, string password);
+
+        Task RegisterDefaultUser();
     }
 
     #endregion

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using XamSample.AppHelper;
 using XamSample.Contracts;
@@ -44,13 +45,12 @@ namespace XamSample.Implementations
         /// <returns>The <see cref="Task{bool}"/>.</returns>
         private async Task<bool> TempUserCheck(string username, string password)
         {
-            Dictionary<string, string> users = new Dictionary<string, string>
-            {
-                { "user1", "test" },
-                { "admin1", "test" },
-                { "admin2", "test" }
-            };
-            if (users.ContainsKey(username) && users[username] == password)
+            var usernames = await Xamarin.Essentials.SecureStorage.GetAsync("users");
+            var passwords = await Xamarin.Essentials.SecureStorage.GetAsync("passwords");
+            var usernameslst = usernames.Split(',');
+            var passwordslst = passwords.Split(',');
+
+            if (usernameslst.Contains(username) && passwordslst.Contains(password))
             {
                 if (username.Contains("admin"))
                 {
@@ -65,8 +65,16 @@ namespace XamSample.Implementations
             return false;
         }
 
-        #endregion
+        public async Task RegisterDefaultUser()
+        {
+            if (await Xamarin.Essentials.SecureStorage.GetAsync("users") == null)
+                await Xamarin.Essentials.SecureStorage.SetAsync("users", "user1,admin1,admin2");
+            if (await Xamarin.Essentials.SecureStorage.GetAsync("passwords") == null)
+                await Xamarin.Essentials.SecureStorage.SetAsync("passwords", "test,test,test");
+        }
 
+        #endregion
+        
         #region PUBLIC_METHODS
 
         /// <summary>
@@ -90,7 +98,7 @@ namespace XamSample.Implementations
                         await Xamarin.Essentials.SecureStorage.SetAsync("username", username);
                         await Xamarin.Essentials.SecureStorage.SetAsync("password", password);
                         await Xamarin.Essentials.SecureStorage.SetAsync("role", result.User.Role);
-                        Xamarin.Forms.Application.Current.Properties["token"] = result.Token;                        
+                        Xamarin.Forms.Application.Current.Properties["token"] = result.Token;
                         return true;
                     }
                     else
@@ -109,6 +117,48 @@ namespace XamSample.Implementations
             {
                 return await TempUserCheck(username, password);
             }
+        }
+
+        public async Task<bool> Register(string username, string password)
+        {
+            var URI = AppConstants.LogInUrl;
+
+            if (!AppConstants.UseLocal)
+            {
+                try
+                {
+                    //need to implement the API
+                }
+                catch (Exception)
+                {
+                    // log exception                    
+                }
+                return true;
+            }
+            else
+            {
+                return await NewUserRegistration(username, password);
+            }
+        }
+
+        private async Task<bool> NewUserRegistration(string username, string password)
+        {
+            var newusers = await Xamarin.Essentials.SecureStorage.GetAsync("users");
+            
+            if(newusers!=null && newusers.Contains(username))
+            {
+                return false;
+            }
+            else
+            {
+                newusers = newusers == null ? username : newusers + "," + username;
+                await Xamarin.Essentials.SecureStorage.SetAsync("users", newusers);
+            }
+
+            var newpasswords = await Xamarin.Essentials.SecureStorage.GetAsync("passwords");
+            newpasswords = newpasswords == null ? password : newpasswords + "," + password;
+            await Xamarin.Essentials.SecureStorage.SetAsync("passwords", newpasswords);
+            return true;
         }
 
         #endregion
