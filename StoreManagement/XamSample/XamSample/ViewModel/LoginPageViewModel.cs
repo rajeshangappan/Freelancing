@@ -83,8 +83,9 @@ namespace XamSample.ViewModel
             var result = _loginService.Login(UserName, Password).GetAwaiter().GetResult();
             if (result)
             {
-                var vm = IocContainer.Resolve<StoreMainPageViewModel>();
-                Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
+                //var vm = IocContainer.Resolve<StoreMainPageViewModel>();
+                //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
+                NavigatetoMainPage();
             }
             else
             {
@@ -94,6 +95,15 @@ namespace XamSample.ViewModel
                     "Invalid Credential",
                     "Ok");
             }
+        }
+
+        private void NavigatetoMainPage()
+        {
+            var masterpage = new HomeMasterPage();
+            var vm = IocContainer.Resolve<StoreMainPageViewModel>();
+            //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
+            masterpage.Detail = new NavigationPage(new StoreMainPage { BindingContext = vm });
+            Application.Current.MainPage = masterpage;
         }
 
         #endregion

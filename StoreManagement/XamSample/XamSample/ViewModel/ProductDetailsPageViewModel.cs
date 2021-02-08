@@ -4,6 +4,7 @@ using Xamarin.Forms;
 using XamSample.AppHelper;
 using XamSample.Contracts;
 using XamSample.Models;
+using XamSample.Services;
 
 namespace XamSample.ViewModel
 {
@@ -18,6 +19,8 @@ namespace XamSample.ViewModel
         /// Defines the _productService.
         /// </summary>
         private IProductService _productService;
+
+        private NavigationService _navigation;
 
         #endregion
 
@@ -61,9 +64,10 @@ namespace XamSample.ViewModel
         /// Initializes a new instance of the <see cref="ProductDetailsPageViewModel"/> class.
         /// </summary>
         /// <param name="productService">The productService<see cref="IProductService"/>.</param>
-        public ProductDetailsPageViewModel(IProductService productService)
+        public ProductDetailsPageViewModel(IProductService productService, NavigationService navigationService)
         {
             _productService = productService;
+            _navigation = navigationService;
             IsAdmin = SampleHelper.IsAdmin();
         }
 
@@ -81,7 +85,8 @@ namespace XamSample.ViewModel
             if (result)
             {
                 await Application.Current.MainPage.DisplayAlert("", "Product Deleted Succesfully", "ok");
-                await Application.Current.MainPage.Navigation.PopAsync();
+                //await Application.Current.MainPage.Navigation.PopAsync();
+                await _navigation.PopAsync();
             }
         }
 
@@ -99,7 +104,8 @@ namespace XamSample.ViewModel
                     if (result)
                     {
                         await Application.Current.MainPage.DisplayAlert("", "Product Added Succesfully", "ok");
-                        await Application.Current.MainPage.Navigation.PopAsync();
+                        await _navigation.PopAsync();
+                        //await Application.Current.MainPage.Navigation.PopAsync();
                     }
                 }
                 else if (!IsNewProduct)
@@ -108,7 +114,8 @@ namespace XamSample.ViewModel
                     if (result)
                     {
                         await Application.Current.MainPage.DisplayAlert("", "Product Updated Succesfully", "ok");
-                        await Application.Current.MainPage.Navigation.PopAsync();
+                        await _navigation.PopAsync();
+                        // await Application.Current.MainPage.Navigation.PopAsync();
                     }
                 }
             }

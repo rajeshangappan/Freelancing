@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using XamSample.AppHelper;
 using XamSample.Contracts;
 using XamSample.Models;
+using XamSample.Services;
 using XamSample.Views;
 
 namespace XamSample.ViewModel
@@ -27,6 +28,7 @@ namespace XamSample.ViewModel
         /// </summary>
         private IProductService _productService;
 
+        private NavigationService _navigation;
         #endregion
 
         #region PUBLIC_PPTY
@@ -34,7 +36,7 @@ namespace XamSample.ViewModel
         /// <summary>
         /// Gets the AddProductCommand.
         /// </summary>
-        public ICommand AddProductCommand => new Command(OnAddProduct);
+        public ICommand AddProductCommand => new Command(async () => await OnAddProduct());
 
         /// <summary>
         /// Gets or sets a value indicating whether IsAdmin.
@@ -81,9 +83,10 @@ namespace XamSample.ViewModel
         /// Initializes a new instance of the <see cref="ProductViewModel"/> class.
         /// </summary>
         /// <param name="productService">The productService<see cref="IProductService"/>.</param>
-        public ProductViewModel(IProductService productService)
+        public ProductViewModel(IProductService productService, NavigationService navigationService)
         {
             _productService = productService;
+            _navigation = navigationService;
             IsAdmin = SampleHelper.IsAdmin();
         }
 
@@ -105,21 +108,22 @@ namespace XamSample.ViewModel
         /// </summary>
         /// <param name="product">The product<see cref="Product"/>.</param>
         /// <param name="IsNewProduct">The IsNewProduct<see cref="bool"/>.</param>
-        private void NavigateToProduct(Product product, bool IsNewProduct)
+        private async Task NavigateToProduct(Product product, bool IsNewProduct)
         {
             var vm = IocContainer.Resolve<ProductDetailsPageViewModel>();
             vm.Product = product;
             vm.IsAdmin = IsAdmin;
             vm.IsNewProduct = IsNewProduct;
-            Application.Current.MainPage.Navigation.PushAsync(new ProductDetailsPage { BindingContext = vm });
+            await _navigation.NavigateAsync(new ProductDetailsPage { BindingContext = vm });
+            //Application.Current.MainPage.Navigation.PushAsync(new ProductDetailsPage { BindingContext = vm });
         }
 
         /// <summary>
         /// The OnAddProduct.
         /// </summary>
-        private void OnAddProduct()
+        private async Task OnAddProduct()
         {
-            NavigateToProduct(new Product(), true);
+            await NavigateToProduct(new Product(), true);
         }
 
         /// <summary>

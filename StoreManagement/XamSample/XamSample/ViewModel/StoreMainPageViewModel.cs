@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamSample.AppHelper;
+using XamSample.Services;
 using XamSample.Views;
 
 namespace XamSample.ViewModel
@@ -36,13 +37,15 @@ namespace XamSample.ViewModel
 
         #endregion
 
+        private NavigationService _navigation;
         #region CONSTRUCTOR
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreMainPageViewModel"/> class.
         /// </summary>
-        public StoreMainPageViewModel()
+        public StoreMainPageViewModel(NavigationService navigationService)
         {
+            _navigation = navigationService;
             IsAdmin = SampleHelper.IsAdmin();
         }
 
@@ -73,7 +76,9 @@ namespace XamSample.ViewModel
         private async Task OnProductClicked()
         {
             var vm = IocContainer.Resolve<ProductViewModel>();
-            await Application.Current.MainPage.Navigation.PushAsync(new ProductPage { BindingContext = vm });
+            //var navpage = (Application.Current.MainPage as MasterDetailPage).Detail as NavigationPage;
+            //await navpage.PushAsync(new ProductPage { BindingContext = vm });
+            await _navigation.NavigateAsync(new ProductPage { BindingContext = vm });
         }
 
         /// <summary>
@@ -83,7 +88,8 @@ namespace XamSample.ViewModel
         private async Task OnStaffClicked()
         {
             var vm = IocContainer.Resolve<StaffPageViewModel>();
-            await Application.Current.MainPage.Navigation.PushAsync(new StaffPage { BindingContext = vm });
+            //await Application.Current.MainPage.Navigation.PushAsync(new StaffPage { BindingContext = vm });
+            await _navigation.NavigateAsync(new StaffPage { BindingContext = vm });
         }
 
         #endregion

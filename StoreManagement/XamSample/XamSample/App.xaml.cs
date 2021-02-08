@@ -40,7 +40,7 @@ namespace XamSample
             InitializeComponent();
             RegisterTypes();
             var login = IocContainer.Resolve<LoginPageViewModel>();
-            MainPage = new NavigationPage(new LoginPage { BindingContext = login });
+            MainPage = new NavigationPage(new LoginPage { BindingContext = login });           
         }
 
         #endregion
@@ -81,6 +81,7 @@ namespace XamSample
             IocContainer.Register<ILoginService, LoginService>();
             IocContainer.RegisterInstance(Database.Instance);
             IocContainer.Register<HttpClientService>();
+            IocContainer.Register<NavigationService>();
 
             IocContainer.RegisterSinglton<IProductDBService, ProductDBService>();
 

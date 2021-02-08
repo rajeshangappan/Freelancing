@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamSample.AppHelper;
 using XamSample.Contracts;
+using XamSample.Services;
 using XamSample.Views;
 
 namespace XamSample.ViewModel
@@ -31,14 +33,15 @@ namespace XamSample.ViewModel
         /// </summary>
         public ICommand SignupCommand { protected set; get; }
         private readonly ILoginService _loginService;
-
-        public RegistrationViewModel(ILoginService loginService)
+        private NavigationService _navigation;
+        public RegistrationViewModel(ILoginService loginService, NavigationService navigationService)
         {
             _loginService = loginService;
-            SignupCommand = new Command(SignUP);
+            _navigation = navigationService;
+            SignupCommand = new Command(async (obj) => await SignUP(obj));
         }
 
-        private void SignUP(object obj)
+        private async Task SignUP(object obj)
         {
             if (!string.IsNullOrEmpty(UserName) && !string.IsNullOrEmpty(Password))
             {
@@ -48,7 +51,8 @@ namespace XamSample.ViewModel
                     if (isRegistered)
                     {
                         var vm = IocContainer.Resolve<StoreMainPageViewModel>();
-                        Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
+                        await _navigation.NavigateAsync(new StoreMainPage { BindingContext = vm });
+                        //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
                     }
                     else
                     {
