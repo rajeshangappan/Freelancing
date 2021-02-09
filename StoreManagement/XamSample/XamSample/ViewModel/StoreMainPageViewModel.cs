@@ -61,12 +61,7 @@ namespace XamSample.ViewModel
         {
             //Logout API and pop this page
             Application.Current.Properties.Clear();
-            //var existingPages = Application.Current.MainPage.Navigation.NavigationStack.ToList();
-            //var count = existingPages.Count;
-            //while (existingPages.Count!=1)
-            {
-                Application.Current.MainPage.Navigation.PopToRootAsync();
-            }
+            _navigation.NavigateToLoginPage();
         }
 
         /// <summary>

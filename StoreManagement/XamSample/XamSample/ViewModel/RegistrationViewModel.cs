@@ -50,23 +50,22 @@ namespace XamSample.ViewModel
                     bool isRegistered =_loginService.Register(UserName, Password).GetAwaiter().GetResult();
                     if (isRegistered)
                     {
-                        var vm = IocContainer.Resolve<StoreMainPageViewModel>();
-                        await _navigation.NavigateAsync(new StoreMainPage { BindingContext = vm });
+                        NavigatetoMainPage();
                         //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
                     }
                     else
                     {
                         // show dialog
-                        Application.Current.MainPage.DisplayAlert(
+                        await Application.Current.MainPage.DisplayAlert(
                             "Registration Failed",
-                            "Same user name already exists",
+                            "User name already exists",
                             "Ok");
                     }
                 }
                 else
                 {
                     // show dialog
-                    Application.Current.MainPage.DisplayAlert(
+                    await Application.Current.MainPage.DisplayAlert(
                         "Login Failed",
                         "Password mismatched",
                         "Ok");
@@ -75,12 +74,19 @@ namespace XamSample.ViewModel
             else
             {
                 // show dialog
-                Application.Current.MainPage.DisplayAlert(
+                await Application.Current.MainPage.DisplayAlert(
                     "Login Failed",
                     "user name and password is mandatory",
                     "Ok");
             }
 
+        }
+        private void NavigatetoMainPage()
+        {
+            var masterpage = new HomeMasterPage();
+            var vm = IocContainer.Resolve<StoreMainPageViewModel>();
+            masterpage.Detail = new NavigationPage(new StoreMainPage { BindingContext = vm });
+            Application.Current.MainPage = masterpage;
         }
     }
 }

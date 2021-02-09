@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XamSample.AppHelper;
+using XamSample.ViewModel;
+using XamSample.Views;
 
 namespace XamSample.Services
 {
@@ -19,6 +21,12 @@ namespace XamSample.Services
         {
             var navpage = (Application.Current.MainPage as MasterDetailPage).Detail as NavigationPage;
             await navpage.PopAsync();
+        }
+
+        public void NavigateToLoginPage()
+        {
+            var login = IocContainer.Resolve<LoginPageViewModel>();
+            Application.Current.MainPage = new NavigationPage(new LoginPage { BindingContext = login });
         }
     }
 }
