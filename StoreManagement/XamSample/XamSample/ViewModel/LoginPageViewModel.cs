@@ -83,6 +83,7 @@ namespace XamSample.ViewModel
             var result = _loginService.Login(UserName, Password).GetAwaiter().GetResult();
             if (result)
             {
+                SampleHelper.CurrentUser = UserName;
                 //var vm = IocContainer.Resolve<StoreMainPageViewModel>();
                 //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
                 NavigatetoMainPage();
@@ -101,7 +102,9 @@ namespace XamSample.ViewModel
         {
             var masterpage = new HomeMasterPage();
             var vm = IocContainer.Resolve<StoreMainPageViewModel>();
+            var mastervm = IocContainer.Resolve<LeftSideNavPageViewModel>();
             //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
+            masterpage.Master = new LeftSideNavPage { BindingContext = mastervm };
             masterpage.Detail = new NavigationPage(new StoreMainPage { BindingContext = vm });
             Application.Current.MainPage = masterpage;
         }

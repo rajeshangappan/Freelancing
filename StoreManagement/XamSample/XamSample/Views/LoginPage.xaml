@@ -16,9 +16,10 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <!--<Label Text="Store Login" Style="{StaticResource Login_style}"></Label>-->
-            <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" HeightRequest="200" Margin="10,10"></Image>
+            
             <Frame BorderColor="#1190CB">
                 <StackLayout>
+                    <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" HeightRequest="100" Margin="10,10"></Image>
                     <Label Text="{x:Static Resx:AppResources.UserName}"  HorizontalOptions="FillAndExpand"></Label>
                     <Entry HorizontalOptions="FillAndExpand" x:Name="UserName" Text="{Binding UserName}" Placeholder="username" ></Entry>
                     <Label Text="{x:Static Resx:AppResources.Password}"  HorizontalOptions="FillAndExpand"></Label>

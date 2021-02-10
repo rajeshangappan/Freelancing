@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamSample.ViewModel;
 
 namespace XamSample.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomeMasterPage : MasterDetailPage
+    public partial class NavItemPage : ContentPage
     {
-        public HomeMasterPage()
+        public NavItemPage()
         {
             InitializeComponent();
-            
-            this.IsPresented = false;         
         }
-
-       
     }
 }

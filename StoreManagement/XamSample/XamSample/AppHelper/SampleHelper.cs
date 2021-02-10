@@ -16,6 +16,7 @@
             return Xamarin.Essentials.SecureStorage.GetAsync("role").GetAwaiter().GetResult() == "admin";
         }
 
+        public static string CurrentUser { get; set; }
         #endregion
     }
 }

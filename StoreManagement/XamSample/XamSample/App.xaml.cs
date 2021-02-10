@@ -41,7 +41,7 @@ namespace XamSample
             RegisterTypes();
             var login = IocContainer.Resolve<LoginPageViewModel>();
             MainPage = new NavigationPage(new LoginPage { BindingContext = login });           
-        }
+        }      
 
         #endregion
 
@@ -91,6 +91,8 @@ namespace XamSample
             IocContainer.Register<ProductDetailsPageViewModel>();
             IocContainer.Register<StoreMainPageViewModel>();
             IocContainer.Register<StaffPageViewModel>();
+            IocContainer.Register<LeftSideNavPageViewModel>();
+            IocContainer.Register<NavItemPageViewModel>();
 
             IocContainer.Register<BackgroundSync>();
 

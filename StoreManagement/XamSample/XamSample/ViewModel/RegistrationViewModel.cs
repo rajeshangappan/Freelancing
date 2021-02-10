@@ -85,6 +85,8 @@ namespace XamSample.ViewModel
         {
             var masterpage = new HomeMasterPage();
             var vm = IocContainer.Resolve<StoreMainPageViewModel>();
+            var mastervm = IocContainer.Resolve<LeftSideNavPageViewModel>();
+            masterpage.Master = new LeftSideNavPage { BindingContext = mastervm };
             masterpage.Detail = new NavigationPage(new StoreMainPage { BindingContext = vm });
             Application.Current.MainPage = masterpage;
         }

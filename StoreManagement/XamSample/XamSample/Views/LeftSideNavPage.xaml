@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:eventtocommandbehavior="clr-namespace:EventToCommandBehavior"
+             x:Class="XamSample.Views.LeftSideNavPage"
+             Title="Master">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Column="0"
+              Grid.Row="0" BackgroundColor="#b3d7ff" Padding="0" Spacing="0" Margin="0">
+            <Image Source="usericon1" WidthRequest="50" HeightRequest="50" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
+            <Label Text="{Binding CurrentUser}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
+              Style="{DynamicResource SubtitleStyle}"/>
+        </StackLayout>
+
+        <ListView x:Name="MenuItemsListView"
+                      Grid.Row="1"
+                      Grid.Column="0"
+              HasUnevenRows="true" BackgroundColor="#b3d7ff"
+              ItemsSource="{Binding MenuItems}" SeparatorVisibility="Default">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+                            <Image Source="temp" WidthRequest="50" HeightRequest="50"></Image>
+                            <Label VerticalOptions="FillAndExpand" 
+                    VerticalTextAlignment="Center" 
+                    Text="{Binding Title}" 
+                    FontSize="24"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <eventtocommandbehavior:EventToCommandBehavior EventName="ItemSelected" Command="{Binding OnListSelectedCommad}" ></eventtocommandbehavior:EventToCommandBehavior>
+            </ListView.Behaviors>
+        </ListView>
+    </Grid>
+</ContentPage>

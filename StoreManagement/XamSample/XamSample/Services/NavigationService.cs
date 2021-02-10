@@ -28,5 +28,14 @@ namespace XamSample.Services
             var login = IocContainer.Resolve<LoginPageViewModel>();
             Application.Current.MainPage = new NavigationPage(new LoginPage { BindingContext = login });
         }
+
+        public void HideLeftNavigationPanal()
+        {
+            if(Application.Current.MainPage is HomeMasterPage masterPage)
+            {
+                masterPage.IsPresented = false;
+
+            }
+        }
     }
 }
