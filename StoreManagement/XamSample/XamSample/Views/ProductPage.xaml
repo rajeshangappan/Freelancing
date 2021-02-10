@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             x:Class="XamSample.Views.ProductPage" Title="Product">
+             x:Class="XamSample.Views.ProductPage" Title="Product" Style="{StaticResource PageStyle}">
     <ContentPage.Content>
         <Grid>
             <FlexLayout Direction="Column">
@@ -22,7 +22,7 @@
                             <local:EventToCommandBehavior EventName="ItemSelected" Command="{Binding ItemSelectedCommand}" />
                         </ListView.Behaviors>
                     </ListView>
-                    <Button Text="Add Product" Grid.Row="1" Command="{Binding AddProductCommand}" IsVisible="{Binding IsAdmin}" HeightRequest="60"></Button>
+                    <Button Text="Add Product" Grid.Row="1" Command="{Binding AddProductCommand}" IsVisible="{Binding IsAdmin}" HeightRequest="60" Style="{StaticResource ButtonStyle}"></Button>
                 </Grid>
             </FlexLayout>
         </Grid>

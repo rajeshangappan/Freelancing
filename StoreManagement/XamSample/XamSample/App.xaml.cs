@@ -40,8 +40,8 @@ namespace XamSample
             InitializeComponent();
             RegisterTypes();
             var login = IocContainer.Resolve<LoginPageViewModel>();
-            MainPage = new NavigationPage(new LoginPage { BindingContext = login });           
-        }      
+            MainPage = new NavigationPage(new LoginPage { BindingContext = login });
+        }
 
         #endregion
 

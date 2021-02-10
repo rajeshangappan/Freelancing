@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Resx="clr-namespace:XamSample.Resources"
-             x:Class="XamSample.Views.ProductDetailsPage" Title="Product Details">
+             x:Class="XamSample.Views.ProductDetailsPage" Title="Product Details" Style="{StaticResource PageStyle}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Entry_Style" TargetType="Entry">
@@ -38,8 +38,8 @@
                     <Entry Text="{Binding Product.MaxLimit}" IsEnabled="{Binding IsAdmin}"
                                                Style="{StaticResource Entry_Style}" Keyboard="Numeric"/>
                 </StackLayout>
-                <Button Text="Save Changes" Command="{Binding SaveChangesCommand}"></Button>
-                <Button Text="Delete Product" Command="{Binding DeleteCommand}" IsEnabled="{Binding EnableDelete}"></Button>
+                <Button Text="Save Changes" Command="{Binding SaveChangesCommand}" Style="{StaticResource ButtonStyle}"></Button>
+                <Button Text="Delete Product" Command="{Binding DeleteCommand}" IsEnabled="{Binding EnableDelete}" Style="{StaticResource ButtonStyle}"></Button>
             </FlexLayout>
         </Grid>
     </ContentPage.Content>

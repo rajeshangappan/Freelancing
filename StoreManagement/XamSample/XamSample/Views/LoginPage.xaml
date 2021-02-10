@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Resx="clr-namespace:XamSample.Resources"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             x:Class="XamSample.Views.LoginPage" NavigationPage.HasNavigationBar="False" BackgroundColor="#80d0ff">
+             x:Class="XamSample.Views.LoginPage" NavigationPage.HasNavigationBar="False" BackgroundColor="#1498D5">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="Login_style" TargetType="Label">
@@ -16,17 +16,17 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <!--<Label Text="Store Login" Style="{StaticResource Login_style}"></Label>-->
-            
-            <Frame BorderColor="#1190CB">
+
+            <Frame BorderColor="#1498D5">
                 <StackLayout>
                     <Image Source="logo.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="200" HeightRequest="100" Margin="10,10"></Image>
                     <Label Text="{x:Static Resx:AppResources.UserName}"  HorizontalOptions="FillAndExpand"></Label>
                     <Entry HorizontalOptions="FillAndExpand" x:Name="UserName" Text="{Binding UserName}" Placeholder="username" ></Entry>
                     <Label Text="{x:Static Resx:AppResources.Password}"  HorizontalOptions="FillAndExpand"></Label>
                     <Entry HorizontalOptions="FillAndExpand" IsPassword="True" x:Name="PassWord" Placeholder="password" Text="{Binding Password}"></Entry>
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" Text="{x:Static Resx:AppResources.Signin}" Command="{Binding LoginCommand}"></Button>
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" Text="{x:Static Resx:AppResources.Signin}" Command="{Binding LoginCommand}" Style="{StaticResource ButtonStyle}"></Button>
 
-                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" Text="{x:Static Resx:AppResources.Newuser}" Command="{Binding LoginCommand1}"></Button>
+                    <Button HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" WidthRequest="250" Text="{x:Static Resx:AppResources.Newuser}" Command="{Binding LoginCommand1}" Style="{StaticResource ButtonStyle}"></Button>
                 </StackLayout>
             </Frame>            
         </StackLayout>

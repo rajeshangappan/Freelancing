@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:EventToCommandBehavior"
-             x:Class="XamSample.Views.StoreMainPage" Title="Store Management" NavigationPage.HasBackButton="False" >
+             x:Class="XamSample.Views.StoreMainPage" Title="Store Management" NavigationPage.HasBackButton="False">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem  Icon="logout.png" Command="{Binding LogoutCommand}"></ToolbarItem>
@@ -20,7 +20,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Frame Grid.Column="0" BackgroundColor="#80d0ff" HeightRequest="100" Margin="10,10,10,10">
+                <Frame Grid.Column="0" BackgroundColor="#20C3B0" HeightRequest="100" Margin="10,10,10,10">
                     <StackLayout Orientation="Vertical">
                         <Image Source="prod.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" Margin="10,10"></Image>
                         <Label Text="Product Details" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
@@ -29,7 +29,7 @@
                         <TapGestureRecognizer Command="{Binding ProductClickCommand}"></TapGestureRecognizer>
                     </Frame.GestureRecognizers>
                 </Frame>
-                <Frame Grid.Column="1" IsVisible="{Binding IsAdmin}" BackgroundColor="#80d0ff" HeightRequest="100" Margin="10,10,10,10">
+                <Frame Grid.Column="1" IsVisible="{Binding IsAdmin}" BackgroundColor="#20C3B0" HeightRequest="100" Margin="10,10,10,10">
                     <StackLayout Orientation="Vertical">
                         <Image Source="staff.png" HorizontalOptions="Center" VerticalOptions="Center" WidthRequest="60" HeightRequest="60" Margin="10,10"></Image>
                         <Label Text="Staff Management" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>

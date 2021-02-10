@@ -9,17 +9,19 @@
             <RowDefinition Height="0.25*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackLayout Grid.Column="0"
-              Grid.Row="0" BackgroundColor="#b3d7ff" Padding="0" Spacing="0" Margin="0">
-            <Image Source="usericon1" WidthRequest="50" HeightRequest="50" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Image>
-            <Label Text="{Binding CurrentUser}" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
-              Style="{DynamicResource SubtitleStyle}"/>
+        <StackLayout Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+              Grid.Row="0" BackgroundColor="#20c3b0" Padding="0" Spacing="0" Margin="0">
+            <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <Image Source="usericon1" WidthRequest="50" HeightRequest="50" ></Image>
+                <Label Text="{Binding CurrentUser}"/>
+            </StackLayout>
+
         </StackLayout>
 
         <ListView x:Name="MenuItemsListView"
                       Grid.Row="1"
                       Grid.Column="0"
-              HasUnevenRows="true" BackgroundColor="#b3d7ff"
+              HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}" SeparatorVisibility="Default">
             <ListView.ItemTemplate>
                 <DataTemplate>

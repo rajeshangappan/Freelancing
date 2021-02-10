@@ -106,6 +106,7 @@ namespace XamSample.ViewModel
             //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
             masterpage.Master = new LeftSideNavPage { BindingContext = mastervm };
             masterpage.Detail = new NavigationPage(new StoreMainPage { BindingContext = vm });
+            (masterpage.Detail as NavigationPage).BarBackgroundColor = Color.FromHex("#20C3B0");
             Application.Current.MainPage = masterpage;
         }
 
