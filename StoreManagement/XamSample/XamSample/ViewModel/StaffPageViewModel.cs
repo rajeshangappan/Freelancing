@@ -88,9 +88,9 @@ namespace XamSample.ViewModel
             //Get User Detail from API
             UserList = new ObservableCollection<User>
             {
-                new User{Username="user1", LoggedIn=true},
-                new User{Username="user2", LoggedIn = false},
-                new User{Username="user3", LoggedIn = false}
+                new User{Username="user1", LoggedIn=true, Location="united states1"},
+                new User{Username="user2", LoggedIn = false, Location="united states2"},
+                new User{Username="user3", LoggedIn = false, Location="united states3"}
             };
         }
 

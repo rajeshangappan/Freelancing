@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using XamSample.AppHelper;
 using XamSample.Contracts;
+using XamSample.Contracts.Services;
 using XamSample.Views;
 
 namespace XamSample.ViewModel
@@ -49,16 +50,17 @@ namespace XamSample.ViewModel
         /// Initializes a new instance of the <see cref="LoginPageViewModel"/> class.
         /// </summary>
         /// <param name="loginService">The loginService<see cref="ILoginService"/>.</param>
-        public LoginPageViewModel(ILoginService loginService)
+        public LoginPageViewModel(ILoginService loginService, ILogService logService) : base(logService)
         {
             _loginService = loginService;
             _loginService.RegisterDefaultUser();
             LoginCommand1 = new Command(NewUser);
-            LoginCommand = new Command(Login);
+            LoginCommand = new Command(Login);            
         }
 
         private void NewUser()
         {
+            LogService.LogInfo("New User Clicked");
             var vm = IocContainer.Resolve<RegistrationViewModel>();
             Application.Current.MainPage.Navigation.PushAsync(new UserRegistrationPage { BindingContext = vm });
         }

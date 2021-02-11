@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamSample.AppHelper;
+using XamSample.Contracts.Services;
 using XamSample.Services;
 using XamSample.Views;
 
@@ -22,7 +23,7 @@ namespace XamSample.ViewModel
 
         private NavigationService _navigation;
 
-        public LeftSideNavPageViewModel(NavigationService navigation)
+        public LeftSideNavPageViewModel(NavigationService navigation, ILogService logService):base(logService)
         {
             _navigation = navigation;
             MenuItems = new ObservableCollection<HomeMasterPageMasterMenuItem>(new[]

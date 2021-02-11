@@ -11,11 +11,15 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" x:Name="list" ItemsSource="{Binding ProductList}" SelectedItem="{Binding SelectedProduct}">
+                    <ListView Grid.Row="0" x:Name="list" ItemsSource="{Binding ProductList}" SelectedItem="{Binding SelectedProduct}" SeparatorVisibility="Default" SeparatorColor="{StaticResource PampersGreen}" RowHeight="100">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextCell Text="{Binding ProdName}">
-                                </TextCell>
+                                <ViewCell>
+                                    <StackLayout Orientation="Vertical" Spacing="5">
+                                        <Label Text="{Binding ProdName, StringFormat='Product Name: {0}'}"></Label>
+                                        <Label Text="{Binding Cost, StringFormat='Cost: {0}'}"></Label>
+                                    </StackLayout>
+                                </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                         <ListView.Behaviors>

@@ -57,7 +57,7 @@ namespace XamSample.Implementations
             {
                 return await db.Table<T>().ToListAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new List<T>();
             }
@@ -90,7 +90,15 @@ namespace XamSample.Implementations
         /// <returns>The <see cref="Task{int}"/>.</returns>
         public async Task<int> Insert(T entity)
         {
-            return await db.InsertAsync(entity);
+            try
+            {
+                await db.InsertAsync(entity);
+            }
+            catch(Exception ex)
+            {
+
+            }
+            return 1;
         }
 
         /// <summary>

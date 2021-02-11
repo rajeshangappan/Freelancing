@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using NLog;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -6,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using XamSample.AppHelper;
 using XamSample.Automap;
 using XamSample.Contracts;
+using XamSample.Contracts.Services;
 using XamSample.Implementations;
 using XamSample.Implementations.Services.Data.Sync;
 using XamSample.Services;
@@ -40,8 +42,10 @@ namespace XamSample
             InitializeComponent();
             RegisterTypes();
             var login = IocContainer.Resolve<LoginPageViewModel>();
-            MainPage = new NavigationPage(new LoginPage { BindingContext = login });
+            MainPage = new NavigationPage(new LoginPage { BindingContext = login });            
         }
+
+        
 
         #endregion
 
@@ -79,6 +83,9 @@ namespace XamSample
 
             IocContainer.Register<IProductService, ProductService>();
             IocContainer.Register<ILoginService, LoginService>();
+
+            IocContainer.RegisterSinglton<ILogService, LogService>();
+
             IocContainer.RegisterInstance(Database.Instance);
             IocContainer.Register<HttpClientService>();
             IocContainer.Register<NavigationService>();
@@ -95,7 +102,7 @@ namespace XamSample
             IocContainer.Register<NavItemPageViewModel>();
 
             IocContainer.Register<BackgroundSync>();
-
+            
             AutoMapRegister();
         }
 

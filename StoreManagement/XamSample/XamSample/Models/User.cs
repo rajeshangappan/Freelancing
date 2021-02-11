@@ -39,6 +39,11 @@ namespace XamSample.Models
         /// </summary>
         public string Username { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Username.
+        /// </summary>
+        public string Location { get; set; }
+
         #endregion
     }
 }

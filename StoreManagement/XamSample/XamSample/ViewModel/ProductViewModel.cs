@@ -46,7 +46,7 @@ namespace XamSample.ViewModel
         /// <summary>
         /// Gets the ItemSelectedCommand.
         /// </summary>
-        public ICommand ItemSelectedCommand => new Command(OnItemSelected);
+        public ICommand ItemSelectedCommand => new Command(async () => await OnItemSelected());
 
         /// <summary>
         /// Gets the OnAppearingCommand.
@@ -115,7 +115,6 @@ namespace XamSample.ViewModel
             vm.IsAdmin = IsAdmin;
             vm.IsNewProduct = IsNewProduct;
             await _navigation.NavigateAsync(new ProductDetailsPage { BindingContext = vm });
-            //Application.Current.MainPage.Navigation.PushAsync(new ProductDetailsPage { BindingContext = vm });
         }
 
         /// <summary>
@@ -133,15 +132,15 @@ namespace XamSample.ViewModel
         private async Task OnAppearing()
         {
             var products = await _productService.GetProducts();
-            ProductList = new ObservableCollection<Product>(products);
+            ProductList = products.ToObservableCollection();
         }
 
         /// <summary>
         /// The OnItemSelected.
         /// </summary>
-        private void OnItemSelected()
+        private async Task OnItemSelected()
         {
-            NavigateToProduct(SelectedProduct, false);
+            await NavigateToProduct(SelectedProduct, false);
         }
 
         /// <summary>
