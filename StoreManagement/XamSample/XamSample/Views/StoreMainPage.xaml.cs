@@ -9,7 +9,7 @@ namespace XamSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StoreMainPage : ContentPage
     {
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreMainPage"/> class.
@@ -21,6 +21,8 @@ namespace XamSample.Views
 
         #endregion
 
+        #region Methods
+
         /// <summary>
         /// The OnBackButtonPressed.
         /// </summary>
@@ -29,5 +31,7 @@ namespace XamSample.Views
         {
             return true;
         }
+
+        #endregion
     }
 }

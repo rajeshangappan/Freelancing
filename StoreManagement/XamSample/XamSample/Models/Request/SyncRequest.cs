@@ -7,7 +7,7 @@ namespace XamSample.Models
     /// </summary>
     public class SyncRequest
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the OfflineVersion.

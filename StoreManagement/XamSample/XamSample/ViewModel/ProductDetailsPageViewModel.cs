@@ -13,18 +13,37 @@ namespace XamSample.ViewModel
     /// </summary>
     public class ProductDetailsPageViewModel
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
+
+        /// <summary>
+        /// Defines the _navigation.
+        /// </summary>
+        private NavigationService _navigation;
 
         /// <summary>
         /// Defines the _productService.
         /// </summary>
         private IProductService _productService;
 
-        private NavigationService _navigation;
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductDetailsPageViewModel"/> class.
+        /// </summary>
+        /// <param name="productService">The productService<see cref="IProductService"/>.</param>
+        /// <param name="navigationService">The navigationService<see cref="NavigationService"/>.</param>
+        public ProductDetailsPageViewModel(IProductService productService, NavigationService navigationService)
+        {
+            _productService = productService;
+            _navigation = navigationService;
+            IsAdmin = SampleHelper.IsAdmin();
+        }
 
         #endregion
 
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets the DeleteCommand.
@@ -58,22 +77,7 @@ namespace XamSample.ViewModel
 
         #endregion
 
-        #region CONSTRUCTOR
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProductDetailsPageViewModel"/> class.
-        /// </summary>
-        /// <param name="productService">The productService<see cref="IProductService"/>.</param>
-        public ProductDetailsPageViewModel(IProductService productService, NavigationService navigationService)
-        {
-            _productService = productService;
-            _navigation = navigationService;
-            IsAdmin = SampleHelper.IsAdmin();
-        }
-
-        #endregion
-
-        #region PRIVATE_METHODS
+        #region Methods
 
         /// <summary>
         /// The DeleteProduct.

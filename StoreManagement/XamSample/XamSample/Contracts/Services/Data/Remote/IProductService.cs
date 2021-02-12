@@ -12,6 +12,22 @@ namespace XamSample.Contracts
     /// </summary>
     public interface IProductService
     {
+        #region Methods
+
+        /// <summary>
+        /// The AddProducts.
+        /// </summary>
+        /// <param name="product">The product<see cref="Product"/>.</param>
+        /// <returns>The <see cref="Task{bool}"/>.</returns>
+        Task<bool> AddProducts(Product product);
+
+        /// <summary>
+        /// The DeleteProduct.
+        /// </summary>
+        /// <param name="product">The product<see cref="Product"/>.</param>
+        /// <returns>The <see cref="Task{bool}"/>.</returns>
+        Task<bool> DeleteProduct(Product product);
+
         /// <summary>
         /// The GetProduct.
         /// </summary>
@@ -32,19 +48,7 @@ namespace XamSample.Contracts
         /// <returns>The <see cref="Task{bool}"/>.</returns>
         Task<bool> Updateproduct(Product product);
 
-        /// <summary>
-        /// The AddProducts.
-        /// </summary>
-        /// <param name="product">The product<see cref="Product"/>.</param>
-        /// <returns>The <see cref="Task{bool}"/>.</returns>
-        Task<bool> AddProducts(Product product);
-
-        /// <summary>
-        /// The DeleteProduct.
-        /// </summary>
-        /// <param name="product">The product<see cref="Product"/>.</param>
-        /// <returns>The <see cref="Task{bool}"/>.</returns>
-        Task<bool> DeleteProduct(Product product);
+        #endregion
     }
 
     #endregion

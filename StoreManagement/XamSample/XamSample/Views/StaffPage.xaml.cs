@@ -9,7 +9,7 @@ namespace XamSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StaffPage : ContentPage
     {
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StaffPage"/> class.

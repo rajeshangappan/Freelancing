@@ -9,7 +9,7 @@ namespace EventToCommandBehavior
     /// <typeparam name="T">.</typeparam>
     public class BehaviorBase<T> : Behavior<T> where T : BindableObject
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets the AssociatedObject.
@@ -17,6 +17,18 @@ namespace EventToCommandBehavior
         public T AssociatedObject { get; private set; }
 
         #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The OnBindingContextChanged.
+        /// </summary>
+        /// <param name="sender">The sender<see cref="object"/>.</param>
+        /// <param name="e">The e<see cref="EventArgs"/>.</param>
+        internal void OnBindingContextChanged(object sender, EventArgs e)
+        {
+            OnBindingContextChanged();
+        }
 
         /// <summary>
         /// The OnAttachedTo.
@@ -36,6 +48,15 @@ namespace EventToCommandBehavior
         }
 
         /// <summary>
+        /// The OnBindingContextChanged.
+        /// </summary>
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            BindingContext = AssociatedObject.BindingContext;
+        }
+
+        /// <summary>
         /// The OnDetachingFrom.
         /// </summary>
         /// <param name="bindable">The bindable<see cref="T"/>.</param>
@@ -46,23 +67,6 @@ namespace EventToCommandBehavior
             AssociatedObject = null;
         }
 
-        /// <summary>
-        /// The OnBindingContextChanged.
-        /// </summary>
-        /// <param name="sender">The sender<see cref="object"/>.</param>
-        /// <param name="e">The e<see cref="EventArgs"/>.</param>
-        internal void OnBindingContextChanged(object sender, EventArgs e)
-        {
-            OnBindingContextChanged();
-        }
-
-        /// <summary>
-        /// The OnBindingContextChanged.
-        /// </summary>
-        protected override void OnBindingContextChanged()
-        {
-            base.OnBindingContextChanged();
-            BindingContext = AssociatedObject.BindingContext;
-        }
+        #endregion
     }
 }

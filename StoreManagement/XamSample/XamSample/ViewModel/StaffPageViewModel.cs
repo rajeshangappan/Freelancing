@@ -12,7 +12,7 @@ namespace XamSample.ViewModel
     /// </summary>
     public class StaffPageViewModel : INotifyPropertyChanged
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _userList.
@@ -21,7 +21,27 @@ namespace XamSample.ViewModel
 
         #endregion
 
-        #region PUBLIC_PPTY
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StaffPageViewModel"/> class.
+        /// </summary>
+        public StaffPageViewModel()
+        {
+        }
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Defines the PropertyChanged.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets the ItemSelectedCommand.
@@ -57,27 +77,7 @@ namespace XamSample.ViewModel
 
         #endregion
 
-        #region CONSTRUCTOR
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StaffPageViewModel"/> class.
-        /// </summary>
-        public StaffPageViewModel()
-        {
-        }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Defines the PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region PRIVATE_METHODS
+        #region Methods
 
         /// <summary>
         /// The OnAppearing.

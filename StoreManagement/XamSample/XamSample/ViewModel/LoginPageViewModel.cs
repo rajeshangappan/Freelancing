@@ -12,7 +12,7 @@ namespace XamSample.ViewModel
     /// </summary>
     public class LoginPageViewModel : ViewModelBase
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _loginService.
@@ -21,14 +21,39 @@ namespace XamSample.ViewModel
 
         #endregion
 
-        #region PUBLIC_PPTY
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginPageViewModel"/> class.
+        /// </summary>
+        /// <param name="loginService">The loginService<see cref="ILoginService"/>.</param>
+        /// <param name="logService">The logService<see cref="ILogService"/>.</param>
+        public LoginPageViewModel(ILoginService loginService, ILogService logService) : base(logService)
+        {
+            _loginService = loginService;
+            _loginService.RegisterDefaultUser();
+            LoginCommand1 = new Command(NewUser);
+            LoginCommand = new Command(Login);
+        }
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets or sets the LoginCommand.
         /// </summary>
         public ICommand LoginCommand { protected set; get; }
 
+        /// <summary>
+        /// Gets or sets the LoginCommand1.
+        /// </summary>
         public ICommand LoginCommand1 { protected set; get; }
+
+        /// <summary>
+        /// Gets or sets the NewUserCommand.
+        /// </summary>
+        public ICommand NewUserCommand { protected set; get; }
 
         /// <summary>
         /// Gets or sets the Password.
@@ -40,34 +65,9 @@ namespace XamSample.ViewModel
         /// </summary>
         public string UserName { get; set; }
 
-        public ICommand NewUserCommand { protected set; get; }
-
         #endregion
 
-        #region CONSTRUCTOR
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LoginPageViewModel"/> class.
-        /// </summary>
-        /// <param name="loginService">The loginService<see cref="ILoginService"/>.</param>
-        public LoginPageViewModel(ILoginService loginService, ILogService logService) : base(logService)
-        {
-            _loginService = loginService;
-            _loginService.RegisterDefaultUser();
-            LoginCommand1 = new Command(NewUser);
-            LoginCommand = new Command(Login);            
-        }
-
-        private void NewUser()
-        {
-            LogService.LogInfo("New User Clicked");
-            var vm = IocContainer.Resolve<RegistrationViewModel>();
-            Application.Current.MainPage.Navigation.PushAsync(new UserRegistrationPage { BindingContext = vm });
-        }
-
-        #endregion
-
-        #region PRIVATE_METHODS
+        #region Methods
 
         /// <summary>
         /// The Login.
@@ -100,6 +100,9 @@ namespace XamSample.ViewModel
             }
         }
 
+        /// <summary>
+        /// The NavigatetoMainPage.
+        /// </summary>
         private void NavigatetoMainPage()
         {
             var masterpage = new HomeMasterPage();
@@ -110,6 +113,16 @@ namespace XamSample.ViewModel
             masterpage.Detail = new NavigationPage(new StoreMainPage { BindingContext = vm });
             (masterpage.Detail as NavigationPage).BarBackgroundColor = Color.FromHex("#20C3B0");
             Application.Current.MainPage = masterpage;
+        }
+
+        /// <summary>
+        /// The NewUser.
+        /// </summary>
+        private void NewUser()
+        {
+            LogService.LogInfo("New User Clicked");
+            var vm = IocContainer.Resolve<RegistrationViewModel>();
+            Application.Current.MainPage.Navigation.PushAsync(new UserRegistrationPage { BindingContext = vm });
         }
 
         #endregion

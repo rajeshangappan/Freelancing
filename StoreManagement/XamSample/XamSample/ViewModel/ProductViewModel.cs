@@ -16,7 +16,12 @@ namespace XamSample.ViewModel
     /// </summary>
     public class ProductViewModel : INotifyPropertyChanged
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
+
+        /// <summary>
+        /// Defines the _navigation.
+        /// </summary>
+        private NavigationService _navigation;
 
         /// <summary>
         /// Defines the _productList.
@@ -28,10 +33,34 @@ namespace XamSample.ViewModel
         /// </summary>
         private IProductService _productService;
 
-        private NavigationService _navigation;
         #endregion
 
-        #region PUBLIC_PPTY
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProductViewModel"/> class.
+        /// </summary>
+        /// <param name="productService">The productService<see cref="IProductService"/>.</param>
+        /// <param name="navigationService">The navigationService<see cref="NavigationService"/>.</param>
+        public ProductViewModel(IProductService productService, NavigationService navigationService)
+        {
+            _productService = productService;
+            _navigation = navigationService;
+            IsAdmin = SampleHelper.IsAdmin();
+        }
+
+        #endregion
+
+        #region Events
+
+        /// <summary>
+        /// Defines the PropertyChanged.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets the AddProductCommand.
@@ -77,37 +106,14 @@ namespace XamSample.ViewModel
 
         #endregion
 
-        #region CONSTRUCTOR
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ProductViewModel"/> class.
-        /// </summary>
-        /// <param name="productService">The productService<see cref="IProductService"/>.</param>
-        public ProductViewModel(IProductService productService, NavigationService navigationService)
-        {
-            _productService = productService;
-            _navigation = navigationService;
-            IsAdmin = SampleHelper.IsAdmin();
-        }
-
-        #endregion
-
-        #region Events
-
-        /// <summary>
-        /// Defines the PropertyChanged.
-        /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        #endregion
-
-        #region PRIVATE_METHODS
+        #region Methods
 
         /// <summary>
         /// The NavigateToProduct.
         /// </summary>
         /// <param name="product">The product<see cref="Product"/>.</param>
         /// <param name="IsNewProduct">The IsNewProduct<see cref="bool"/>.</param>
+        /// <returns>The <see cref="Task"/>.</returns>
         private async Task NavigateToProduct(Product product, bool IsNewProduct)
         {
             var vm = IocContainer.Resolve<ProductDetailsPageViewModel>();
@@ -120,6 +126,7 @@ namespace XamSample.ViewModel
         /// <summary>
         /// The OnAddProduct.
         /// </summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         private async Task OnAddProduct()
         {
             await NavigateToProduct(new Product(), true);
@@ -138,6 +145,7 @@ namespace XamSample.ViewModel
         /// <summary>
         /// The OnItemSelected.
         /// </summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         private async Task OnItemSelected()
         {
             await NavigateToProduct(SelectedProduct, false);

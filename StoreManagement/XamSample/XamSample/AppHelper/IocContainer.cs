@@ -9,7 +9,7 @@ namespace XamSample.AppHelper
     /// </summary>
     public static class IocContainer
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the Instances.
@@ -33,7 +33,7 @@ namespace XamSample.AppHelper
 
         #endregion
 
-        #region PUBLIC_METHODS
+        #region Methods
 
         /// <summary>
         /// The Register.

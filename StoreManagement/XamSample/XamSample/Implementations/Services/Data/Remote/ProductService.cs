@@ -16,7 +16,7 @@ namespace XamSample.Services
     /// </summary>
     public class ProductService : IProductService
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _apiRepository.
@@ -30,7 +30,7 @@ namespace XamSample.Services
 
         #endregion
 
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductService"/> class.
@@ -45,7 +45,7 @@ namespace XamSample.Services
 
         #endregion
 
-        #region PUBLIC_METHODS
+        #region Methods
 
         /// <summary>
         /// The AddProducts.
@@ -196,8 +196,6 @@ namespace XamSample.Services
             return false;
         }
 
-        #endregion
-
         /// <summary>
         /// The AddParameterToURI.
         /// </summary>
@@ -221,5 +219,7 @@ namespace XamSample.Services
             }
             return URI.ToString();
         }
+
+        #endregion
     }
 }

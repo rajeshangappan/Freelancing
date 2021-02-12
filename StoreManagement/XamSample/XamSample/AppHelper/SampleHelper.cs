@@ -5,7 +5,16 @@
     /// </summary>
     public class SampleHelper
     {
-        #region PUBLIC_METHODS
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the CurrentUser.
+        /// </summary>
+        public static string CurrentUser { get; set; }
+
+        #endregion
+
+        #region Methods
 
         /// <summary>
         /// The IsAdmin.
@@ -16,7 +25,6 @@
             return Xamarin.Essentials.SecureStorage.GetAsync("role").GetAwaiter().GetResult() == "admin";
         }
 
-        public static string CurrentUser { get; set; }
         #endregion
     }
 }

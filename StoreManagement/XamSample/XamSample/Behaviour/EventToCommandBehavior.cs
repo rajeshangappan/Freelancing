@@ -10,7 +10,7 @@ namespace EventToCommandBehavior
     /// </summary>
     public class EventToCommandBehavior : BehaviorBase<VisualElement>
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the CommandParameterProperty.
@@ -39,7 +39,7 @@ namespace EventToCommandBehavior
 
         #endregion
 
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the Command.
@@ -63,45 +63,27 @@ namespace EventToCommandBehavior
 
         #endregion
 
-        /// <summary>
-        /// The OnAttachedTo.
-        /// </summary>
-        /// <param name="bindable">The bindable<see cref="VisualElement"/>.</param>
-        protected override void OnAttachedTo(VisualElement bindable)
-        {
-            base.OnAttachedTo(bindable);
-            RegisterEvent(EventName);
-        }
+        #region Methods
 
         /// <summary>
-        /// The OnDetachingFrom.
+        /// The OnEventNameChanged.
         /// </summary>
-        /// <param name="bindable">The bindable<see cref="VisualElement"/>.</param>
-        protected override void OnDetachingFrom(VisualElement bindable)
+        /// <param name="bindable">The bindable<see cref="BindableObject"/>.</param>
+        /// <param name="oldValue">The oldValue<see cref="object"/>.</param>
+        /// <param name="newValue">The newValue<see cref="object"/>.</param>
+        internal static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            DeregisterEvent(EventName);
-            base.OnDetachingFrom(bindable);
-        }
-
-        /// <summary>
-        /// The RegisterEvent.
-        /// </summary>
-        /// <param name="name">The name<see cref="string"/>.</param>
-        internal void RegisterEvent(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
+            var behavior = (EventToCommandBehavior)bindable;
+            if (behavior.AssociatedObject == null)
             {
                 return;
             }
 
-            EventInfo eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
-            if (eventInfo == null)
-            {
-                throw new ArgumentException(string.Format("EventToCommandBehavior: Can't register the '{0}' event.", EventName));
-            }
-            MethodInfo methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
-            eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
-            eventInfo.AddEventHandler(AssociatedObject, eventHandler);
+            string oldEventName = (string)oldValue;
+            string newEventName = (string)newValue;
+
+            behavior.DeregisterEvent(oldEventName);
+            behavior.RegisterEvent(newEventName);
         }
 
         /// <summary>
@@ -161,24 +143,46 @@ namespace EventToCommandBehavior
         }
 
         /// <summary>
-        /// The OnEventNameChanged.
+        /// The RegisterEvent.
         /// </summary>
-        /// <param name="bindable">The bindable<see cref="BindableObject"/>.</param>
-        /// <param name="oldValue">The oldValue<see cref="object"/>.</param>
-        /// <param name="newValue">The newValue<see cref="object"/>.</param>
-        internal static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
+        /// <param name="name">The name<see cref="string"/>.</param>
+        internal void RegisterEvent(string name)
         {
-            var behavior = (EventToCommandBehavior)bindable;
-            if (behavior.AssociatedObject == null)
+            if (string.IsNullOrWhiteSpace(name))
             {
                 return;
             }
 
-            string oldEventName = (string)oldValue;
-            string newEventName = (string)newValue;
-
-            behavior.DeregisterEvent(oldEventName);
-            behavior.RegisterEvent(newEventName);
+            EventInfo eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
+            if (eventInfo == null)
+            {
+                throw new ArgumentException(string.Format("EventToCommandBehavior: Can't register the '{0}' event.", EventName));
+            }
+            MethodInfo methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
+            eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
+            eventInfo.AddEventHandler(AssociatedObject, eventHandler);
         }
+
+        /// <summary>
+        /// The OnAttachedTo.
+        /// </summary>
+        /// <param name="bindable">The bindable<see cref="VisualElement"/>.</param>
+        protected override void OnAttachedTo(VisualElement bindable)
+        {
+            base.OnAttachedTo(bindable);
+            RegisterEvent(EventName);
+        }
+
+        /// <summary>
+        /// The OnDetachingFrom.
+        /// </summary>
+        /// <param name="bindable">The bindable<see cref="VisualElement"/>.</param>
+        protected override void OnDetachingFrom(VisualElement bindable)
+        {
+            DeregisterEvent(EventName);
+            base.OnDetachingFrom(bindable);
+        }
+
+        #endregion
     }
 }

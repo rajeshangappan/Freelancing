@@ -1,24 +1,33 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Util;
-using Android.Views;
-using Android.Widget;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace XamSample.Droid
 {
+    /// <summary>
+    /// Defines the <see cref="SplashActivity" />.
+    /// </summary>
     [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
-        static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+        #region Fields
 
+        /// <summary>
+        /// Defines the TAG.
+        /// </summary>
+        internal static readonly string TAG = "X:" + typeof(SplashActivity).Name;
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The OnCreate.
+        /// </summary>
+        /// <param name="savedInstanceState">The savedInstanceState<see cref="Bundle"/>.</param>
+        /// <param name="persistentState">The persistentState<see cref="PersistableBundle"/>.</param>
         public override void OnCreate(Bundle savedInstanceState, PersistableBundle persistentState)
         {
             base.OnCreate(savedInstanceState, persistentState);
@@ -26,6 +35,9 @@ namespace XamSample.Droid
         }
 
         // Launches the startup task
+        /// <summary>
+        /// The OnResume.
+        /// </summary>
         protected override void OnResume()
         {
             base.OnResume();
@@ -34,12 +46,6 @@ namespace XamSample.Droid
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
 
-        // Simulates background work that happens behind the splash screen
-        //async void SimulateStartup()
-        //{
-        //    Log.Debug(TAG, "Performing some startup work that takes a bit of time.");          
-        //    Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
-            
-        //}
+        #endregion
     }
 }

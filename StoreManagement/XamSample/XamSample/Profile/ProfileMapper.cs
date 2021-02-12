@@ -10,7 +10,7 @@ namespace XamSample.Automap
     /// </summary>
     public class ProfileMapper : Profile
     {
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProfileMapper"/> class.

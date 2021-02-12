@@ -5,7 +5,7 @@
     /// </summary>
     public class LoginResponse
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the Token.

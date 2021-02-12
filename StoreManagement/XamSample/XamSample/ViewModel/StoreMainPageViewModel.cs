@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using XamSample.AppHelper;
@@ -13,7 +12,30 @@ namespace XamSample.ViewModel
     /// </summary>
     public class StoreMainPageViewModel
     {
-        #region PUBLIC_PPTY
+        #region Fields
+
+        /// <summary>
+        /// Defines the _navigation.
+        /// </summary>
+        private NavigationService _navigation;
+
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoreMainPageViewModel"/> class.
+        /// </summary>
+        /// <param name="navigationService">The navigationService<see cref="NavigationService"/>.</param>
+        public StoreMainPageViewModel(NavigationService navigationService)
+        {
+            _navigation = navigationService;
+            IsAdmin = SampleHelper.IsAdmin();
+        }
+
+        #endregion
+
+        #region Properties
 
         /// <summary>
         /// Gets or sets a value indicating whether IsAdmin.
@@ -37,21 +59,7 @@ namespace XamSample.ViewModel
 
         #endregion
 
-        private NavigationService _navigation;
-        #region CONSTRUCTOR
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StoreMainPageViewModel"/> class.
-        /// </summary>
-        public StoreMainPageViewModel(NavigationService navigationService)
-        {
-            _navigation = navigationService;
-            IsAdmin = SampleHelper.IsAdmin();
-        }
-
-        #endregion
-
-        #region PRIVATE_METHODS
+        #region Methods
 
         /// <summary>
         /// The OnLogout.

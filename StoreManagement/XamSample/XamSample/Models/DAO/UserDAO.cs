@@ -8,7 +8,7 @@ namespace XamSample.Models.DAO
     /// </summary>
     public class UserDAO
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the EmailAddress.

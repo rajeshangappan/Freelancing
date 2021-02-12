@@ -15,7 +15,7 @@ namespace XamSample.Services
     /// </summary>
     public class ProductDBService : IProductDBService
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _productItem.
@@ -24,7 +24,7 @@ namespace XamSample.Services
 
         #endregion
 
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductDBService"/> class.
@@ -39,7 +39,7 @@ namespace XamSample.Services
 
         #endregion
 
-        #region PUBLIC_METHODS
+        #region Methods
 
         /// <summary>
         /// The AddProducts.

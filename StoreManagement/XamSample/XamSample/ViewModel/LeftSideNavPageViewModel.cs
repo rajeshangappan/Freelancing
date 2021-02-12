@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -14,16 +12,65 @@ using XamSample.Views;
 
 namespace XamSample.ViewModel
 {
+    /// <summary>
+    /// Defines the <see cref="HomeMasterPageMasterMenuItem" />.
+    /// </summary>
+    public class HomeMasterPageMasterMenuItem
+    {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HomeMasterPageMasterMenuItem"/> class.
+        /// </summary>
+        public HomeMasterPageMasterMenuItem()
+        {
+            TargetType = typeof(HomeMasterPageMasterMenuItem);
+        }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the Id.
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the TargetType.
+        /// </summary>
+        public Type TargetType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Title.
+        /// </summary>
+        public string Title { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Defines the <see cref="LeftSideNavPageViewModel" />.
+    /// </summary>
     public class LeftSideNavPageViewModel : ViewModelBase
     {
-        public ObservableCollection<HomeMasterPageMasterMenuItem> MenuItems { get; set; }
-        public string CurrentUser { get; set; } = SampleHelper.CurrentUser;
+        #region Fields
 
-        public ICommand OnListSelectedCommad { get; set; }
-
+        /// <summary>
+        /// Defines the _navigation.
+        /// </summary>
         private NavigationService _navigation;
 
-        public LeftSideNavPageViewModel(NavigationService navigation, ILogService logService):base(logService)
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LeftSideNavPageViewModel"/> class.
+        /// </summary>
+        /// <param name="navigation">The navigation<see cref="NavigationService"/>.</param>
+        /// <param name="logService">The logService<see cref="ILogService"/>.</param>
+        public LeftSideNavPageViewModel(NavigationService navigation, ILogService logService) : base(logService)
         {
             _navigation = navigation;
             MenuItems = new ObservableCollection<HomeMasterPageMasterMenuItem>(new[]
@@ -36,15 +83,43 @@ namespace XamSample.ViewModel
             OnListSelectedCommad = new Command<object>(async (x) => await OnItemSelected(x));
         }
 
-        private async Task OnItemSelected(object seletedItem)
-        {
-            var args = seletedItem as SelectedItemChangedEventArgs;
-            _navigation.HideLeftNavigationPanal();
-            await NavigateToItem((args.SelectedItem as HomeMasterPageMasterMenuItem).Title);
-        }
+        #endregion
 
+        #region Events
+
+        /// <summary>
+        /// Defines the PropertyChanged.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string propertyName = "")
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the CurrentUser.
+        /// </summary>
+        public string CurrentUser { get; set; } = SampleHelper.CurrentUser;
+
+        /// <summary>
+        /// Gets or sets the MenuItems.
+        /// </summary>
+        public ObservableCollection<HomeMasterPageMasterMenuItem> MenuItems { get; set; }
+
+        /// <summary>
+        /// Gets or sets the OnListSelectedCommad.
+        /// </summary>
+        public ICommand OnListSelectedCommad { get; set; }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// The OnPropertyChanged.
+        /// </summary>
+        /// <param name="propertyName">The propertyName<see cref="string"/>.</param>
+        internal void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             if (PropertyChanged == null)
                 return;
@@ -52,23 +127,30 @@ namespace XamSample.ViewModel
             PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// The NavigateToItem.
+        /// </summary>
+        /// <param name="selectedItem">The selectedItem<see cref="string"/>.</param>
+        /// <returns>The <see cref="Task"/>.</returns>
         private async Task NavigateToItem(string selectedItem)
         {
             var navItemVM = IocContainer.Resolve<NavItemPageViewModel>();
             navItemVM.SelectedItem = selectedItem;
             await _navigation.NavigateAsync(new NavItemPage { BindingContext = navItemVM });
         }
-    }
-    public class HomeMasterPageMasterMenuItem
-    {
-        public HomeMasterPageMasterMenuItem()
-        {
-            TargetType = typeof(HomeMasterPageMasterMenuItem);
-        }
-        public int Id { get; set; }
-        public string Title { get; set; }
 
-        public Type TargetType { get; set; }
+        /// <summary>
+        /// The OnItemSelected.
+        /// </summary>
+        /// <param name="seletedItem">The seletedItem<see cref="object"/>.</param>
+        /// <returns>The <see cref="Task"/>.</returns>
+        private async Task OnItemSelected(object seletedItem)
+        {
+            var args = seletedItem as SelectedItemChangedEventArgs;
+            _navigation.HideLeftNavigationPanal();
+            await NavigateToItem((args.SelectedItem as HomeMasterPageMasterMenuItem).Title);
+        }
+
+        #endregion
     }
 }
-

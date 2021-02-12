@@ -1,28 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamSample.AppHelper;
-using XamSample.ViewModel;
 
 namespace XamSample.Views
 {
+    /// <summary>
+    /// Defines the <see cref="LeftSideNavPage" />.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LeftSideNavPage : ContentPage
     {
+        #region Fields
+
+        /// <summary>
+        /// Defines the ListView.
+        /// </summary>
         public ListView ListView;
 
+        #endregion
+
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LeftSideNavPage"/> class.
+        /// </summary>
         public LeftSideNavPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
+
+        #endregion
     }
-    
 }

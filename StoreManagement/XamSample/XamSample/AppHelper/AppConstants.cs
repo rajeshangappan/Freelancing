@@ -8,7 +8,7 @@ namespace XamSample.AppHelper
     /// </summary>
     public class AppConstants
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the AddProductUrl.
@@ -52,7 +52,7 @@ namespace XamSample.AppHelper
 
         #endregion
 
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets the DatabasePath.

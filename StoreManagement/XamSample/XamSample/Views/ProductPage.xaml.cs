@@ -10,7 +10,7 @@ namespace XamSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProductPage : ContentPage
     {
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ProductPage"/> class.
@@ -22,7 +22,7 @@ namespace XamSample.Views
 
         #endregion
 
-        #region PRIVATE_METHODS
+        #region Methods
 
         /// <summary>
         /// The ContentPage_Appearing.

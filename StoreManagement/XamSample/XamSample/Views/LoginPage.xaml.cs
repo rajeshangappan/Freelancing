@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace XamSample.Views
@@ -10,7 +9,7 @@ namespace XamSample.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LoginPage"/> class.
@@ -21,7 +20,5 @@ namespace XamSample.Views
         }
 
         #endregion
-
-      
     }
 }

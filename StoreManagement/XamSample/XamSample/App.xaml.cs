@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using NLog;
 using System;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -15,6 +14,7 @@ using XamSample.ViewModel;
 using XamSample.Views;
 
 
+
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XamSample
 {
@@ -23,7 +23,7 @@ namespace XamSample
     /// </summary>
     public partial class App : Application
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the syncInterval.
@@ -32,7 +32,7 @@ namespace XamSample
 
         #endregion
 
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="App"/> class.
@@ -42,14 +42,47 @@ namespace XamSample
             InitializeComponent();
             RegisterTypes();
             var login = IocContainer.Resolve<LoginPageViewModel>();
-            MainPage = new NavigationPage(new LoginPage { BindingContext = login });            
+            MainPage = new NavigationPage(new LoginPage { BindingContext = login });
         }
-
-        
 
         #endregion
 
-        #region PRIVATE_METHODS
+        #region Methods
+
+        /// <summary>
+        /// The OnResume.
+        /// </summary>
+        protected override void OnResume()
+        {
+        }
+
+        /// <summary>
+        /// The OnSleep.
+        /// </summary>
+        protected override void OnSleep()
+        {
+        }
+
+        /// <summary>
+        /// The OnStart.
+        /// </summary>
+        protected override void OnStart()
+        {
+            var seconds = TimeSpan.FromSeconds(syncInterval);
+
+            //Run the background tasks for sync
+            Xamarin.Forms.Device.StartTimer(seconds, () =>
+            {
+
+                // Call SyncService
+                var backgroundService = IocContainer.Resolve<BackgroundSync>();
+
+                backgroundService.SyncData();
+
+                // Returning true means you want to repeat this timer
+                return true;
+            });
+        }
 
         /// <summary>
         /// The AutoMapRegister.
@@ -102,45 +135,10 @@ namespace XamSample
             IocContainer.Register<NavItemPageViewModel>();
 
             IocContainer.Register<BackgroundSync>();
-            
+
             AutoMapRegister();
         }
 
         #endregion
-
-        /// <summary>
-        /// The OnStart.
-        /// </summary>
-        protected override void OnStart()
-        {
-            var seconds = TimeSpan.FromSeconds(syncInterval);
-
-            //Run the background tasks for sync
-            Xamarin.Forms.Device.StartTimer(seconds, () =>
-            {
-
-                // Call SyncService
-                var backgroundService = IocContainer.Resolve<BackgroundSync>();
-
-                backgroundService.SyncData();
-
-                // Returning true means you want to repeat this timer
-                return true;
-            });
-        }
-
-        /// <summary>
-        /// The OnSleep.
-        /// </summary>
-        protected override void OnSleep()
-        {
-        }
-
-        /// <summary>
-        /// The OnResume.
-        /// </summary>
-        protected override void OnResume()
-        {
-        }
     }
 }

@@ -9,7 +9,7 @@ namespace XamSample.Models.DAO
     [Table("Product")]
     public class ProductDAO
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the AvailableQty.

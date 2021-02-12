@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace XamSample.ViewModel
+﻿namespace XamSample.ViewModel
 {
+    /// <summary>
+    /// Defines the <see cref="NavItemPageViewModel" />.
+    /// </summary>
     public class NavItemPageViewModel
     {
+        #region Properties
+
+        /// <summary>
+        /// Gets or sets the SelectedItem.
+        /// </summary>
         public string SelectedItem { get; set; }
+
+        #endregion
     }
 }

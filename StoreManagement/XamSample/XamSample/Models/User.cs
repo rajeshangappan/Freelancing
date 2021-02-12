@@ -7,7 +7,7 @@ namespace XamSample.Models
     /// </summary>
     public class User
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the EmailAddress.
@@ -18,6 +18,11 @@ namespace XamSample.Models
         /// Gets or sets the Id.
         /// </summary>
         public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Location.
+        /// </summary>
+        public string Location { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether LoggedIn.
@@ -38,11 +43,6 @@ namespace XamSample.Models
         /// Gets or sets the Username.
         /// </summary>
         public string Username { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Username.
-        /// </summary>
-        public string Location { get; set; }
 
         #endregion
     }

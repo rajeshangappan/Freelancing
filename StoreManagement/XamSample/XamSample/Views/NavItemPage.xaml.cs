@@ -1,21 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XamSample.ViewModel;
 
 namespace XamSample.Views
 {
+    /// <summary>
+    /// Defines the <see cref="NavItemPage" />.
+    /// </summary>
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NavItemPage : ContentPage
     {
+        #region Constructors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavItemPage"/> class.
+        /// </summary>
         public NavItemPage()
         {
             InitializeComponent();
         }
+
+        #endregion
     }
 }

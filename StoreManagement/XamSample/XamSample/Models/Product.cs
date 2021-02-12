@@ -9,7 +9,7 @@ namespace XamSample.Models
     [Table("Product")]
     public class Product
     {
-        #region PUBLIC_PPTY
+        #region Properties
 
         /// <summary>
         /// Gets or sets the AvailableQty.

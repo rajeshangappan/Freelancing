@@ -1,21 +1,21 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using XamSample.Services;
-using XamSample.AppHelper;
-using XamSample.Contracts.Services;
-using System.Reflection;
 
 namespace XamSample.Droid
 {
+    /// <summary>
+    /// Defines the <see cref="MainActivity" />.
+    /// </summary>
     [Activity(Label = "AppTemplate", Icon = "@mipmap/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+        #region Methods
+
+        /// <summary>
+        /// The OnCreate.
+        /// </summary>
+        /// <param name="savedInstanceState">The savedInstanceState<see cref="Bundle"/>.</param>
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
@@ -23,12 +23,10 @@ namespace XamSample.Droid
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-           // InitializeNLog();
+            // InitializeNLog();
             LoadApplication(new App());
-           //this.Bootstraping();
-          //  this.Bootstraping();
         }
 
-        
+        #endregion
     }
 }

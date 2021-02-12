@@ -13,6 +13,41 @@ namespace XamSample.Contracts
     /// </summary>
     public interface IProductDBService
     {
+        #region Methods
+
+        /// <summary>
+        /// The AddProducts.
+        /// </summary>
+        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        Task<int> AddProducts(ProductDAO product);
+
+        /// <summary>
+        /// The AddProductsFromOnline.
+        /// </summary>
+        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        Task<int> AddProductsFromOnline(ProductDAO product);
+
+        /// <summary>
+        /// The DeleteProduct.
+        /// </summary>
+        /// <param name="product">The product<see cref="Product"/>.</param>
+        /// <returns>The <see cref="Task{int}"/>.</returns>
+        Task<int> DeleteProduct(Product product);
+
+        /// <summary>
+        /// The GetLatestVersion.
+        /// </summary>
+        /// <returns>The <see cref="Task{long}"/>.</returns>
+        Task<long> GetLatestVersion();
+
+        /// <summary>
+        /// The GetOfflineProducts.
+        /// </summary>
+        /// <returns>The <see cref="Task{List{ProductDAO}}"/>.</returns>
+        Task<List<ProductDAO>> GetOfflineProducts();
+
         /// <summary>
         /// The GetProduct.
         /// </summary>
@@ -34,44 +69,13 @@ namespace XamSample.Contracts
         Task<int> Updateproduct(ProductDAO product);
 
         /// <summary>
-        /// The AddProducts.
-        /// </summary>
-        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
-        /// <returns>The <see cref="Task{int}"/>.</returns>
-        Task<int> AddProducts(ProductDAO product);
-
-        /// <summary>
-        /// The DeleteProduct.
-        /// </summary>
-        /// <param name="product">The product<see cref="Product"/>.</param>
-        /// <returns>The <see cref="Task{int}"/>.</returns>
-        Task<int> DeleteProduct(Product product);
-
-        /// <summary>
-        /// The GetOfflineProducts.
-        /// </summary>
-        /// <returns>The <see cref="Task{List{ProductDAO}}"/>.</returns>
-        Task<List<ProductDAO>> GetOfflineProducts();
-
-        /// <summary>
-        /// The AddProductsFromOnline.
-        /// </summary>
-        /// <param name="product">The product<see cref="ProductDAO"/>.</param>
-        /// <returns>The <see cref="Task{int}"/>.</returns>
-        Task<int> AddProductsFromOnline(ProductDAO product);
-
-        /// <summary>
         /// The UpdateproductFromOnline.
         /// </summary>
         /// <param name="product">The product<see cref="ProductDAO"/>.</param>
         /// <returns>The <see cref="Task{int}"/>.</returns>
         Task<int> UpdateproductFromOnline(ProductDAO product);
 
-        /// <summary>
-        /// The GetLatestVersion.
-        /// </summary>
-        /// <returns>The <see cref="Task{long}"/>.</returns>
-        Task<long> GetLatestVersion();
+        #endregion
     }
 
     #endregion

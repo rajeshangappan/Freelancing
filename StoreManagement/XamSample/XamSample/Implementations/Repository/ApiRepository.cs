@@ -16,7 +16,7 @@ namespace XamSample.Implementations
     /// </summary>
     public class ApiRepository : IApiRepository
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _httpClient.
@@ -25,7 +25,7 @@ namespace XamSample.Implementations
 
         #endregion
 
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiRepository"/> class.
@@ -39,43 +39,7 @@ namespace XamSample.Implementations
 
         #endregion
 
-        #region PRIVATE_METHODS
-
-        /// <summary>
-        /// The AddHeader.
-        /// </summary>
-        private void AddHeader()
-        {
-            if (Application.Current.Properties.ContainsKey("token") && Application.Current.Properties["token"] != null)
-            {
-                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Application.Current.Properties["token"].ToString());
-            }
-        }
-
-        /// <summary>
-        /// The GetAsync.
-        /// </summary>
-        /// <param name="uri">The uri<see cref="string"/>.</param>
-        /// <returns>The <see cref="Task{HttpResponseMessage}"/>.</returns>
-        private async Task<HttpResponseMessage> GetAsync(string uri)
-        {
-            return await Policy
-                .Handle<WebException>(ex =>
-                {
-                    Trace.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
-                    return true;
-                })
-                .WaitAndRetryAsync
-                (
-                    1,
-                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(5, retryAttempt))
-                )
-                .ExecuteAsync(async () => await _httpClient.GetAsync(uri));
-        }
-
-        #endregion
-
-        #region PUBLIC_METHODS
+        #region Methods
 
         /// <summary>
         /// The DeleteAsync.
@@ -238,6 +202,38 @@ namespace XamSample.Implementations
             }
 
             throw new Exception(httpResponseMessage.StatusCode + jsonResult + logMessage);
+        }
+
+        /// <summary>
+        /// The AddHeader.
+        /// </summary>
+        private void AddHeader()
+        {
+            if (Application.Current.Properties.ContainsKey("token") && Application.Current.Properties["token"] != null)
+            {
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Application.Current.Properties["token"].ToString());
+            }
+        }
+
+        /// <summary>
+        /// The GetAsync.
+        /// </summary>
+        /// <param name="uri">The uri<see cref="string"/>.</param>
+        /// <returns>The <see cref="Task{HttpResponseMessage}"/>.</returns>
+        private async Task<HttpResponseMessage> GetAsync(string uri)
+        {
+            return await Policy
+                .Handle<WebException>(ex =>
+                {
+                    Trace.WriteLine($"{ex.GetType().Name + " : " + ex.Message}");
+                    return true;
+                })
+                .WaitAndRetryAsync
+                (
+                    1,
+                    retryAttempt => TimeSpan.FromSeconds(Math.Pow(5, retryAttempt))
+                )
+                .ExecuteAsync(async () => await _httpClient.GetAsync(uri));
         }
 
         #endregion

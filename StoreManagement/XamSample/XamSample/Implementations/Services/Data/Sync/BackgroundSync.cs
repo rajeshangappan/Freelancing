@@ -15,7 +15,7 @@ namespace XamSample.Implementations.Services.Data.Sync
     /// </summary>
     public class BackgroundSync
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _apiRepository.
@@ -39,7 +39,7 @@ namespace XamSample.Implementations.Services.Data.Sync
 
         #endregion
 
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BackgroundSync"/> class.
@@ -56,7 +56,21 @@ namespace XamSample.Implementations.Services.Data.Sync
 
         #endregion
 
-        #region PRIVATE_METHODS
+        #region Methods
+
+        /// <summary>
+        /// The SyncData.
+        /// </summary>
+        /// <returns>The <see cref="Task"/>.</returns>
+        public async Task SyncData()
+        {
+            var current = Connectivity.NetworkAccess;
+
+            if (current == NetworkAccess.Internet && !AppConstants.UseLocal)
+            {
+                await SyncDataToOnline();
+            }
+        }
 
         /// <summary>
         /// The SyncDataToOnline.
@@ -104,24 +118,6 @@ namespace XamSample.Implementations.Services.Data.Sync
                 {
                     await _productDBService.AddProductsFromOnline(data);
                 }
-            }
-        }
-
-        #endregion
-
-        #region PUBLIC_METHODS
-
-        /// <summary>
-        /// The SyncData.
-        /// </summary>
-        /// <returns>The <see cref="Task"/>.</returns>
-        public async Task SyncData()
-        {
-            var current = Connectivity.NetworkAccess;
-
-            if (current == NetworkAccess.Internet && !AppConstants.UseLocal)
-            {
-                await SyncDataToOnline();
             }
         }
 

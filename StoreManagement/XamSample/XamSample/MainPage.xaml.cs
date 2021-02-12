@@ -7,7 +7,7 @@ namespace XamSample
     /// </summary>
     public partial class MainPage : ContentPage
     {
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainPage"/> class.

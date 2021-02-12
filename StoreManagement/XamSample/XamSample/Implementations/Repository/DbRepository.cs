@@ -13,7 +13,7 @@ namespace XamSample.Implementations
     /// <typeparam name="T">.</typeparam>
     public class DbRepository<T> : IDbRepository<T> where T : class, new()
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the db.
@@ -22,7 +22,7 @@ namespace XamSample.Implementations
 
         #endregion
 
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DbRepository{T}"/> class.
@@ -35,7 +35,7 @@ namespace XamSample.Implementations
 
         #endregion
 
-        #region PUBLIC_METHODS
+        #region Methods
 
         /// <summary>
         /// The Delete.
@@ -94,7 +94,7 @@ namespace XamSample.Implementations
             {
                 await db.InsertAsync(entity);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

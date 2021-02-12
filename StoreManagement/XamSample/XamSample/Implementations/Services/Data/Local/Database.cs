@@ -9,7 +9,7 @@ namespace XamSample.Services
     /// </summary>
     public class Database
     {
-        #region PRIVATE_VARIABLES
+        #region Fields
 
         /// <summary>
         /// Defines the _lazyInstance.
@@ -18,21 +18,7 @@ namespace XamSample.Services
 
         #endregion
 
-        #region PUBLIC_PPTY
-
-        /// <summary>
-        /// Gets the Instance.
-        /// </summary>
-        public static Database Instance => _lazyInstance.Value;
-
-        /// <summary>
-        /// Gets the Connection.
-        /// </summary>
-        public SQLiteAsyncConnection Connection { get; }
-
-        #endregion
-
-        #region CONSTRUCTOR
+        #region Constructors
 
         /// <summary>
         /// Prevents a default instance of the <see cref="Database"/> class from being created.
@@ -44,6 +30,20 @@ namespace XamSample.Services
                 Connection = new SQLiteAsyncConnection(AppConstants.DatabasePath);
             }
         }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Gets the Instance.
+        /// </summary>
+        public static Database Instance => _lazyInstance.Value;
+
+        /// <summary>
+        /// Gets the Connection.
+        /// </summary>
+        public SQLiteAsyncConnection Connection { get; }
 
         #endregion
     }
