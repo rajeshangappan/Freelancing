@@ -33,6 +33,7 @@ namespace XamSample.Services
             if (stream == null)
                 throw new Exception($"The resource was not loaded properly.");
             LogManager.Configuration = new XmlLoggingConfiguration(System.Xml.XmlReader.Create(stream), null);
+            LogManager.Configuration.Variables["mydir"] = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             this.logger = LogManager.GetCurrentClassLogger();
         }
 
