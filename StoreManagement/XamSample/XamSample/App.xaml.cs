@@ -133,6 +133,7 @@ namespace XamSample
             IocContainer.Register<StaffPageViewModel>();
             IocContainer.Register<LeftSideNavPageViewModel>();
             IocContainer.Register<NavItemPageViewModel>();
+            IocContainer.Register<LoggerPageViewModel>();
 
             IocContainer.Register<BackgroundSync>();
 

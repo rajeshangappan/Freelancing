@@ -74,8 +74,10 @@ namespace XamSample.ViewModel
         /// </summary>
         private void Login()
         {
+            LogService.LogInfo("Login Initiated");
             if (string.IsNullOrEmpty(UserName) || string.IsNullOrEmpty(Password))
             {
+                LogService.LogInfo("Login Failed");
                 Application.Current.MainPage.DisplayAlert(
                    "Login Failed",
                    "Please Enter username and password",
@@ -85,6 +87,7 @@ namespace XamSample.ViewModel
             var result = _loginService.Login(UserName, Password).GetAwaiter().GetResult();
             if (result)
             {
+                LogService.LogInfo("Login Success");
                 SampleHelper.CurrentUser = UserName;
                 //var vm = IocContainer.Resolve<StoreMainPageViewModel>();
                 //Application.Current.MainPage.Navigation.PushAsync(new StoreMainPage { BindingContext = vm });
@@ -92,6 +95,7 @@ namespace XamSample.ViewModel
             }
             else
             {
+                LogService.LogInfo("Login Failed");
                 // show dialog
                 Application.Current.MainPage.DisplayAlert(
                     "Login Failed",
@@ -105,6 +109,7 @@ namespace XamSample.ViewModel
         /// </summary>
         private void NavigatetoMainPage()
         {
+            LogService.LogInfo("Navigate to main page");
             var masterpage = new HomeMasterPage();
             var vm = IocContainer.Resolve<StoreMainPageViewModel>();
             var mastervm = IocContainer.Resolve<LeftSideNavPageViewModel>();

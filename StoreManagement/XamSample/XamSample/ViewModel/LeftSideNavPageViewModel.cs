@@ -79,6 +79,7 @@ namespace XamSample.ViewModel
                     new HomeMasterPageMasterMenuItem { Id = 1, Title = "My Ads" },
                     new HomeMasterPageMasterMenuItem { Id = 2, Title = "Products" },
                     new HomeMasterPageMasterMenuItem { Id = 3, Title = "Posts" },
+                    new HomeMasterPageMasterMenuItem { Id = 4, Title = "Logs" },
                 });
             OnListSelectedCommad = new Command<object>(async (x) => await OnItemSelected(x));
         }
@@ -139,6 +140,12 @@ namespace XamSample.ViewModel
             await _navigation.NavigateAsync(new NavItemPage { BindingContext = navItemVM });
         }
 
+        private async Task NavigateToLogPage(HomeMasterPageMasterMenuItem item)
+        {
+            var logVM = IocContainer.Resolve<LoggerPageViewModel>();
+            await _navigation.NavigateAsync(new LoggerPage { BindingContext = logVM });
+        }
+
         /// <summary>
         /// The OnItemSelected.
         /// </summary>
@@ -147,8 +154,17 @@ namespace XamSample.ViewModel
         private async Task OnItemSelected(object seletedItem)
         {
             var args = seletedItem as SelectedItemChangedEventArgs;
+            var selectedObj = args.SelectedItem as HomeMasterPageMasterMenuItem;
             _navigation.HideLeftNavigationPanal();
-            await NavigateToItem((args.SelectedItem as HomeMasterPageMasterMenuItem).Title);
+            if (selectedObj.Id == 4)
+            {
+                await NavigateToLogPage(selectedObj);
+            }
+            else
+            {
+                await NavigateToItem(selectedObj.Title);
+            }
+
         }
 
         #endregion

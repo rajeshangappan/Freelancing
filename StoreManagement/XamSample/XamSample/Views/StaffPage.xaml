@@ -10,11 +10,11 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ListView Grid.Row="0" x:Name="list" ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedUser}" SeparatorVisibility="Default" SeparatorColor="{StaticResource PampersGreen}" RowHeight="100">
+                    <ListView Grid.Row="0" x:Name="list" ItemsSource="{Binding UserList}" SelectedItem="{Binding SelectedUser}" SeparatorVisibility="Default" SeparatorColor="{StaticResource PampersGreen}" RowHeight="80">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout Orientation="Vertical" Spacing="5">
+                                    <StackLayout Orientation="Vertical" Spacing="5" VerticalOptions="CenterAndExpand">
                                         <Label Text="{Binding Username, StringFormat='User Name: {0}'}"></Label>
                                         <Label Text="{Binding Location, StringFormat='Location: {0}'}"></Label>
                                         <Label Text="{Binding Cost, StringFormat='Cost: {0}'}"></Label>

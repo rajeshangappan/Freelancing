@@ -44,6 +44,12 @@
         /// <param name="message">The message<see cref="string"/>.</param>
         void LogWarning(string message);
 
+        /// <summary>
+        /// Get Log message
+        /// </summary>
+        /// <returns></returns>
+        string GetLogMessage();
+
         #endregion
     }
 

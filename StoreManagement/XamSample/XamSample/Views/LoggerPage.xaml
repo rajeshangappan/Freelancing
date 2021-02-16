@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:EventToCommandBehavior"
+             x:Class="XamSample.Views.LoggerPage" Title="Logs">
+
+    <ContentPage.Content>
+        <Grid>
+            <FlexLayout Direction="Column">
+                <Grid FlexLayout.Grow="1" RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding LogMessage}" Grid.Row="0" LineBreakMode="WordWrap"></Label>
+                    <Button Text="Send Mail" Grid.Row="1" Command="{Binding SendMailCommand}" HeightRequest="60" Style="{StaticResource ButtonStyle}"></Button>
+                </Grid>
+            </FlexLayout>
+        </Grid>
+    </ContentPage.Content>
+    <ContentPage.Behaviors>
+        <local:EventToCommandBehavior EventName="Appearing" Command="{Binding OnAppearingCommand}" />
+    </ContentPage.Behaviors>
+</ContentPage>

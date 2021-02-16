@@ -40,21 +40,21 @@ namespace XamSample.Services
         /// <summary>
         /// The getfile.
         /// </summary>
-        public void getfile()
+        public string GetLogMessage()
         {
             string folder;
             folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
             string logFolder = System.IO.Path.Combine(folder, "logs");
             if (System.IO.Directory.Exists(logFolder))
             {
-                var files = System.IO.Directory.GetFiles(logFolder);
-
-                foreach (var t in files)
+                var filepath = Path.Combine(logFolder,"logfile.txt");
+                if (File.Exists(filepath))
                 {
-                    string ppp = logFolder+"\\"+t;
-                    var text = File.ReadAllText(ppp);
+                    var text = File.ReadAllText(filepath);
+                    return text;
                 }
             }
+            return string.Empty;
         }
 
         /// <summary>

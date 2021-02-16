@@ -6,7 +6,7 @@
         <StackLayout>
             <Label Text="{Binding SelectedItem, StringFormat='{0} Show your content here'}"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand"/>            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

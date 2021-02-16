@@ -9,7 +9,7 @@
                 <Setter Property="FontFamily" Value="Roboto" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="TextColor" Value="#333333" />
-                <Setter Property="Margin" Value="0,10" />
+                <Setter Property="Margin" Value="0,10,0,0" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -17,22 +17,22 @@
         <Grid Margin="10">
             <!--BODY-->
             <FlexLayout Direction="Column" FlexLayout.Grow="1">
-                <StackLayout>
+                <StackLayout Spacing="0">
                     <Label Text="{x:Static Resx:AppResources.ProductName}"></Label>
                     <Entry Text="{Binding Product.ProdName}" IsEnabled="{Binding IsAdmin}"
                                                Style="{StaticResource Entry_Style}" />
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Spacing="0">
                     <Label Text="{x:Static Resx:AppResources.Cost}"></Label>
                     <Entry Text="{Binding Product.Cost}" IsEnabled="{Binding IsAdmin}"
                                                Style="{StaticResource Entry_Style}" Keyboard="Numeric" />
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Spacing="0">
                     <Label Text="{x:Static Resx:AppResources.AvailableQTY}"></Label>
                     <Entry Text="{Binding Product.AvailableQty}" 
                                                Style="{StaticResource Entry_Style}" Keyboard="Numeric" />
                 </StackLayout>
-                <StackLayout>
+                <StackLayout Spacing="0">
                     <Label Text="{x:Static Resx:AppResources.MaxQty}"></Label>
                     <Entry Text="{Binding Product.MaxLimit}" IsEnabled="{Binding IsAdmin}"
                                                Style="{StaticResource Entry_Style}" Keyboard="Numeric"/>
