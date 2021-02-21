@@ -71,6 +71,11 @@ namespace XamSample.ViewModel
             }
         }
 
+        /// <summary>
+        /// Logger page constructor.
+        /// </summary>
+        /// <param name="navigationService"></param>
+        /// <param name="logService"></param>
         public LoggerPageViewModel(NavigationService navigationService, ILogService logService) : base(logService)
         {
 
@@ -85,6 +90,10 @@ namespace XamSample.ViewModel
             LogMessage = LogService.GetLogMessage();
         }
 
+        /// <summary>
+        /// Property changed event is called.
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected void OnPropertyChanged(string propertyName)
         {
             var handler = PropertyChanged;
